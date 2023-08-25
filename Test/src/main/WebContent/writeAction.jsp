@@ -4,8 +4,9 @@
 <%@ page import="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
-<jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent" />
+<jsp:setProperty name="bbs" property="comment_ID" />
+<jsp:setProperty name="bbs" property="title" />
+<jsp:setProperty name="bbs" property="contents" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,8 @@
 					script.println("</script>");
 				} else {
 					BbsDAO2 bbsDAO = new BbsDAO2();
-					int result = bbsDAO.write(bbs.getTitle(), bbs.getContents());
+					//int result = bbsDAO.write(bbs.getComment_ID(), bbs.getTitle(), bbs.getContents());
+					 int result = bbsDAO.write(bbs.getComment_ID(), bbs.getTitle(), bbs.getContents());
 					if (result == -1) {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");

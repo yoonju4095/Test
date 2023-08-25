@@ -49,6 +49,10 @@
 				<tbody>
 					<!-- 글 제목과 글 작성이 각각 한줄로 들어갈 수 있도록 tr로 각각 묶어준다. -->
 					<tr>
+					<!-- 아이디를 작성할 수있는 input을 삽입 해준다. -->
+						<td><input type="text" class="form-control" placeholder="아이디" name="comment_ID" maxlength="50"></td>
+					</tr>
+					<tr>
 					<!-- 글 제목을 작성할 수있는 input을 삽입 해준다. -->
 						<td><input type="text" class="form-control" placeholder="글 제목" name="title" maxlength="50"></td>
 					</tr>

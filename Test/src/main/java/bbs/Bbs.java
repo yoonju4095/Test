@@ -2,16 +2,17 @@ package bbs;
 
 public class Bbs {
 	
-	private int Board_ID;
+
 	private String Title;		
 	private String Contents;	
 	private String Ins_Date_Time;	
+	private String Comment_ID;
 	
-	public int getBoard_ID() {
-		return Board_ID;
+	public String getComment_ID() {
+		return Comment_ID;
 	}
-	public void setBoard_ID(int board_ID) {
-		Board_ID = board_ID;
+	public void setComment_ID(String comment_ID) {
+		Comment_ID = comment_ID;
 	}
 	public String getTitle() {
 		return Title;
