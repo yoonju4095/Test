@@ -3,11 +3,19 @@ package bbs;
 public class Bbs {
 	
 
+
 	private String Title;		
 	private String Contents;	
 	private String Ins_Date_Time;	
 	private String Comment_ID;
+	private int Board_ID;
 	
+	public int getBoard_ID() {
+		return Board_ID;
+	}
+	public void setBoard_ID(int board_ID) {
+		Board_ID = board_ID;
+	}
 	public String getComment_ID() {
 		return Comment_ID;
 	}

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <!-- BbsDAO 함수를 사용하기때문에 가져오기 -->
-<%@ page import="bbs.BbsDAO2" %>
+<%@ page import="bbs.BbsDAO" %>
 <!-- DAO쪽을 사용하면 당연히 javaBeans도 사용되니 들고온다.-->
 <%@ page import="bbs.Bbs" %>
 <!-- ArrayList같은 경우는 게시판의 목록을 가져오기위해 필요한 것 -->
@@ -34,7 +34,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="main.jsp">SMT 게시판 사이트</a>
+			<a class="navbar-brand" href="main.jsp">SMT Web Site</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -55,27 +55,23 @@
 						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
 					</tr>
 				</thead>
-				<tbody>				
-                <!--임시 데이터 삽입 -->
-              		<tr>
-                    	<td>1</td>
-                        <td>안녕하세요</td>
-                        <td>홍길동</td>
-                        <td>2021-02-01</td>
-                    </tr>   
-                    <tr>
-                    	<td>1</td>
-                        <td>안녕하세요</td>
-                        <td>홍길동</td>
-                        <td>2021-02-01</td>
-                    </tr> 
-                    <tr>
-                    	<td>1</td>
-                        <td>안녕하세요</td>
-                        <td>홍길동</td>
-                        <td>2021-02-01</td>
-                    </tr> 
-				</tbody>
+				 <tbody>
+		            <%
+		                BbsDAO bbsDAO = new BbsDAO();
+		                ArrayList<Bbs> list = bbsDAO.getList(1);
+		                
+		                for (Bbs bbs : list) {
+		            %>
+		                <tr>
+		                    <td><a href="view.jsp?board_id=<%= bbs.getBoard_ID() %>"><%= bbs.getBoard_ID() %></a></td>
+		            		<td><a href="view.jsp?board_id=<%= bbs.getBoard_ID() %>"><%= bbs.getTitle() %></a></td>
+		                    <td><%= bbs.getComment_ID() %></td>
+		                    <td><%= bbs.getIns_Date_Time() %></td>
+		                </tr>
+		            <%
+		                }
+		            %>
+				 </tbody>
 			</table>
 
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>

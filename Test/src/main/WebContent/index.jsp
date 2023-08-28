@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/custom.css">
-<title>SMT 게시판 사이트</title>
+<title>SMT Web Site</title>
 </head>
 <body>
 	<script>
