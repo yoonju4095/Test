@@ -15,6 +15,7 @@
 </head>
 <body>
 	<%
+		// 게시글의 제목 또는 내용이 비어있는 경우
 		if (bbs.getTitle() == null || bbs.getContents() == null) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
@@ -25,12 +26,14 @@
 					BbsDAO bbsDAO = new BbsDAO();
 					 int result = bbsDAO.write(bbs.getComment_ID(), bbs.getTitle(), bbs.getContents());
 					if (result == -1) {
+						// 글쓰기에 실패한 경우
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글쓰기에 실패 했습니다.')");
 						script.println("history.back()");
 						script.println("</script>");
 					} else {
+						// 글쓰기에 성공한 경우
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("location.href = 'bbs.jsp'");

@@ -57,9 +57,13 @@
 				</thead>
 				 <tbody>
 		            <%
+		         		// BbsDAO 인스턴스 생성
 		                BbsDAO bbsDAO = new BbsDAO();
+		            
+		         		// 게시판 목록을 가져오기 위해 BbsDAO의 getList 메소드 호출
 		                ArrayList<Bbs> list = bbsDAO.getList(1);
 		                
+		             	// 가져온 목록을 반복하며 테이블의 각 행에 정보를 출력
 		                for (Bbs bbs : list) {
 		            %>
 		                <tr>

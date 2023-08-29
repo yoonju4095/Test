@@ -12,10 +12,12 @@
 </head>
 <body>
     <%
+ 		// 게시글의 board_id, title, contents를 파라미터로 받아옴
         int board_id = Integer.parseInt(request.getParameter("board_id"));
         String title = request.getParameter("Title"); // 수정
         String contents = request.getParameter("Contents"); // 수정
 
+     	// 제목 또는 내용이 비어있는 경우
         if (title == null || contents == null || title.equals("") || contents.equals("")) {
             PrintWriter script = response.getWriter();
             script.println("<script>");
@@ -32,7 +34,7 @@
                 script.println("history.back()");
                 script.println("</script>");
             } else {
-                // 업데이트 날짜 업데이트 부분 삭제
+            	// 글 수정 성공 시 게시판 목록 페이지로 이동
                 PrintWriter script = response.getWriter();
                 script.println("<script>");
                 script.println("location.href = 'bbs.jsp'");

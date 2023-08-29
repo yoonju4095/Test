@@ -2,13 +2,11 @@ package bbs;
 
 public class Bbs {
 	
-
-
-	private String Title;		
-	private String Contents;	
-	private String Ins_Date_Time;	
-	private String Comment_ID;
-	private int Board_ID;
+	private int Board_ID;           // 게시글 번호
+	private String Title;           // 게시글 제목
+	private String Contents;        // 게시글 내용
+	private String Ins_Date_Time;   // 게시글 작성 일자 및 시간
+	private String Comment_ID;      // 게시글 작성자 아이디
 	
 	public int getBoard_ID() {
 		return Board_ID;

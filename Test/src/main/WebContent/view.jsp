@@ -5,7 +5,8 @@
 <%@ page import="bbs.BbsDAO" %>
 
 <%
-	  int board_id = Integer.parseInt(request.getParameter("board_id"));
+	//게시글의 board_id를 파라미터로 받아와서 해당 게시글 정보를 가져옴
+	int board_id = Integer.parseInt(request.getParameter("board_id"));
     BbsDAO bbsDAO = new BbsDAO();
     Bbs bbs = bbsDAO.getBbs(board_id);
 %>
