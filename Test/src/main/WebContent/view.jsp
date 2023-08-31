@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <td>작성일자</td>
-                    <td><%= bbs.getIns_Date_Time() %></td>
+                    <td><%= bbs.getIns_Date_Time().substring(0, 16) %></td>
                 </tr>
                 <tr>
                     <td>내용</td>

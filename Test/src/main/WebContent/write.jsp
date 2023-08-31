@@ -38,7 +38,7 @@
 		<!-- bbs에서 만든 양식 참조 사용 -->
 		<div class = "row">
 		<!-- form -->
-			<form method="post" action="writeAction.jsp">
+			<form method="post" encType = "multipart/form-data" action="writeAction.jsp">
 			<table class="table table-striped" style="text-align:center; border:1px solid #dddddd"> 
 				<thead>
 					<tr>
@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 					<!-- 사진 업로드 -->
-						<td><input type="file" name="fileName"></td>
+						<td><input type="file" name=fileName></td>
 					</tr>
 				</tbody>
 			</table>

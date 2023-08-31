@@ -5,7 +5,7 @@
 <%@ page import="bbs.BbsDAO" %>
 
 <%
-	  int board_id = Integer.parseInt(request.getParameter("board_id"));
+	int board_id = Integer.parseInt(request.getParameter("board_id"));
     BbsDAO bbsDAO = new BbsDAO();
     Bbs bbs = bbsDAO.getBbs(board_id);
 %>
