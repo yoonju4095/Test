@@ -1,12 +1,16 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="bbs.Bbs" %>
 <%@ page import="bbs.BbsDAO" %>
+<%@ page import="bbs.Answer" %>
+<%@ page import="bbs.AnswerDAO" %>
 
 <%
 	//게시글의 board_id를 파라미터로 받아와서 해당 게시글 정보를 가져옴
 	int board_id = Integer.parseInt(request.getParameter("board_id"));
+ 	String comment_id = request.getParameter("board_id");
     BbsDAO bbsDAO = new BbsDAO();
     Bbs bbs = bbsDAO.getBbs(board_id);
 %>
@@ -67,6 +71,48 @@
                 </tr>
 				</tbody>
 			</table>
+			
+			<form method="post" action="answerAction.jsp?>">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<%-- 홀,짝 행 구분 --%>
+					<thead>
+						<tr>
+							<th colspan="3"
+								style="background-color: #eeeeeee; text-align: center;">댓글</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<%
+							AnswerDAO answerDAO = new AnswerDAO();
+							ArrayList<Answer> list = answerDAO.getList(board_id);
+							for (Answer answer : list) {
+						%>
+						    <tr>
+						        <td style="text-align: center;"><%= answer.getContents() %></td>
+						        <td style="text-align: right;"><%= answer.getComment_ID() %>
+						            <a href="update.jsp?" class="btn">수정</a>
+						            <a href="update.jsp?" class="btn">삭제</a>
+						        </td>
+						    </tr>
+						<%
+							}
+						%>
+						
+
+						<td>
+							<input type="hidden" name="board_id" value="<%= bbs.getBoard_ID() %>">
+							<input type="text" class="form-control" placeholder="아이디를 입력하세요." name="comment_ID" maxlength="50" style="margin-bottom: 10px; width: 100%;">
+							<input type="text" class="form-control" placeholder="댓글을 입력하세요." name="contents" maxlength="100" style="height: 50px;  width: 100%;">
+						</td>	
+					</tbody>
+				</table>
+				<input type="submit" class="btn" value="댓글입력" style="margin-bottom: 10px;">
+			</form>
+			
+			
+			
 			<a href="bbs.jsp" class="btn btn-primary">목록</a>
 			<a href="update.jsp?board_id=<%= bbs.getBoard_ID() %>" class="btn btn-primary">수정</a>
 			<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?board_id=<%= bbs.getBoard_ID() %>" class="btn btn-primary">삭제</a>

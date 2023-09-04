@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="bbs.BbsDAO" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
-<jsp:setProperty name="bbs" property="comment_ID" />
-<jsp:setProperty name="bbs" property="title" />
-<jsp:setProperty name="bbs" property="contents" />
+
 
 <%@ page import="java.io.File" %>
 <%@ page import="java.io.IOException" %>
@@ -23,17 +20,22 @@
     request.setCharacterEncoding("UTF-8");
 
     // 폼에서 전송된 데이터 받기
-    //String comment_ID = request.getParameter("comment_ID");
-    //String title = request.getParameter("title");
-    //String contents = request.getParameter("contents");
+    String comment_ID = request.getParameter("comment_ID");
+    String title = request.getParameter("title");
+    String contents = request.getParameter("contents");
+
+    
+    out.println("comment_ID: " + comment_ID);
+    out.println("title: " + title);
+    out.println("contents: " + contents);
 
     // 파일 업로드 관련 코드
     String fileName = ""; // 파일명 초기화
-    String uploadPath = "C:/Users/Eunsu/eclipse-workspace/Test/src/main/WebContent/uploadedFiles/";
+    String uploadPath = "fileFolder";
 
-    Part filePart = request.getPart("uploadedFiles");
+    Part filePart = request.getPart("fileName");
     if (filePart != null) {
-        fileName = BbsDAO.getFile_Name(filePart);
+        fileName = BbsDAO.getFileName(filePart); // 파일 이름을 추출하는 함수를 호출
         if (!fileName.isEmpty()) {
             try (InputStream input = filePart.getInputStream();
                  FileOutputStream output = new FileOutputStream(uploadPath + fileName)) {
@@ -48,12 +50,13 @@
         }
     }
 
+
     // 여기까지 파일 업로드 처리
 
     // 게시물 작성 처리
     BbsDAO bbsDAO = new BbsDAO();
-    int result = bbsDAO.write(bbs.getComment_ID(), bbs.getTitle(), bbs.getContents(), fileName);
-
+    //int result = bbsDAO.write(bbs.getComment_ID(), bbs.getTitle(), bbs.getContents(), fileName);
+    int result = bbsDAO.write(comment_ID, title,contents,fileName);
     if (result == -1) {
         // 글쓰기에 실패한 경우
         response.setContentType("text/html;charset=UTF-8");

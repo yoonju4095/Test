@@ -42,10 +42,12 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<form action="bbs.jsp" method="get" class="form-inline mb-3">
-				<input type="text" name="searchKeyword" class="form-control" placeholder="검색어를 입력하세요" value="<%= request.getParameter("searchKeyword") %>">
-				<input type="submit" value="검색" class="btn btn-primary ml-2">
-			</form>
+			<div class="text-right">
+			    <form action="bbs.jsp" method="get" class="form-inline mb-3" style="margin-bottom: 15px;">
+			        <input type="text" name="searchKeyword" class="form-control" placeholder="검색어를 입력하세요" >
+			        <input type="submit" value="검색" class="btn btn-primary ml-2">
+			    </form>
+			</div>
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<thead>
@@ -87,7 +89,17 @@
 						<td><a href="view.jsp?board_id=<%= bbs.getBoard_ID() %>"><%= bbs.getBoard_ID() %></a></td>
 						<td><a href="view.jsp?board_id=<%= bbs.getBoard_ID() %>"><%= bbs.getTitle() %></a></td>
 						<td><%= bbs.getComment_ID() %></td>
-						<td><%= bbs.getIns_Date_Time().substring(0, 16) %></td>
+						<td>
+					    <%
+					        String insDateTime = bbs.getIns_Date_Time();
+					        if (insDateTime != null && !insDateTime.isEmpty()) {
+					            out.print(insDateTime.substring(0, Math.min(16, insDateTime.length())));
+					        } else {
+					            out.print("날짜 없음"); 
+					        }
+					    %>
+						</td>
+						
 					</tr>
 					<%
 						}
@@ -96,14 +108,12 @@
 			</table>
 
 			<% if (hasPrevPage) { %>
-    <a href="bbs.jsp?pageNumber=<%= pageNumber - 1 %>" class="btn btn-default">이전 페이지</a>
-<% } %>
-
-<% if (hasNextPage) { %>
-    <a href="bbs.jsp?pageNumber=<%= pageNumber + 1 %>" class="btn btn-default">다음 페이지</a>
-<% } %>
-
-
+			    <a href="bbs.jsp?pageNumber=<%= pageNumber - 1 %>" class="btn btn-default">이전 페이지</a>
+			<% } %>
+			
+			<% if (hasNextPage) { %>
+			    <a href="bbs.jsp?pageNumber=<%= pageNumber + 1 %>" class="btn btn-default">다음 페이지</a>
+			<% } %>
 			
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>

@@ -226,4 +226,17 @@ public class BbsDAO {
 		    return list;
 		}
 
+	  
+	  public static String getFileName(Part part) {
+		    // Part 객체에서 사용자가 선택한 파일 이름을 추출
+		    String contentDisposition = part.getHeader("content-disposition");
+		    String[] elements = contentDisposition.split(";");
+		    for (String element : elements) {
+		        if (element.trim().startsWith("filename")) {
+		            return element.substring(element.indexOf("=") + 1).trim().replace("\"", "");
+		        }
+		    }
+		    return "";
+		}
+
 }

@@ -38,11 +38,11 @@
 		<!-- bbs에서 만든 양식 참조 사용 -->
 		<div class = "row">
 		<!-- form -->
-			<form method="post" encType = "multipart/form-data" action="writeAction.jsp">
+			<form method="post" enctype="multipart/form-data" action="writeAction.jsp">
 			<table class="table table-striped" style="text-align:center; border:1px solid #dddddd"> 
 				<thead>
 					<tr>
-						<!-- colspan="2" 현재의 속성이 2개의 열을 차지하게 해준다. -->
+						<!-- colspan="2" 현재의 속성이 2개의 열을 차지하게 해준다. --> 
 						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
 					</tr>
 				</thead>
