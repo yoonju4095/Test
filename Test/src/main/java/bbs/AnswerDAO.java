@@ -83,6 +83,19 @@ public class AnswerDAO {
 		    return -1;
 		}
 
+	   
+	   public int delete(String comment_ID) {
+		    String SQL = "DELETE FROM CS_Ans WHERE Comment_ID = ?";
+		    try {
+		        PreparedStatement pstmt = conn.prepareStatement(SQL);
+		        pstmt.setString(1, comment_ID);
+		        return pstmt.executeUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return -1;
+		}
+
 	}
 
 

@@ -84,29 +84,39 @@
 					</thead>
 					
 					<tbody>
+					
 						<%
 							AnswerDAO answerDAO = new AnswerDAO();
 							ArrayList<Answer> list = answerDAO.getList(board_id);
 							for (Answer answer : list) {
 						%>
 						    <tr>
-						        <td style="text-align: center;"><%= answer.getContents() %></td>
+						          <td style="text-align: center;"><%= answer.getContents() %></td>
 						        <td style="text-align: right;"><%= answer.getComment_ID() %>
-						            <a href="update.jsp?" class="btn">수정</a>
-						            <a href="update.jsp?" class="btn">삭제</a>
+						            <a href="answerUpdate.jsp?" class="btn">수정</a>
+						           <a onclick="return confirm('정말로 삭제하시겠습니까?')" href="answerDelete.jsp?comment_ID=<%= answer.getComment_ID() %>
+						           &board_id=<%= bbs.getBoard_ID() %>" class="btn">삭제</a>
+						           
 						        </td>
 						    </tr>
 						<%
 							}
 						%>
-						
-
-						<td>
-							<input type="hidden" name="board_id" value="<%= bbs.getBoard_ID() %>">
-							<input type="text" class="form-control" placeholder="아이디를 입력하세요." name="comment_ID" maxlength="50" style="margin-bottom: 10px; width: 100%;">
-							<input type="text" class="form-control" placeholder="댓글을 입력하세요." name="contents" maxlength="100" style="height: 50px;  width: 100%;">
-						</td>	
+					
 					</tbody>
+		
+					<tbody>
+						<tr>
+						    <td>
+						        <input type="hidden" name="board_id" value="<%= bbs.getBoard_ID() %>">
+						        <input type="text" class="form-control" placeholder="아이디를 입력하세요." name="comment_ID" maxlength="50" style="margin-bottom: 10px;">
+						        <input type="text" class="form-control" placeholder="댓글을 입력하세요." name="contents" maxlength="100" style="height: 50px;">
+						    </td>	
+						</tr>
+					</tbody>
+							
+					
+
 				</table>
 				<input type="submit" class="btn" value="댓글입력" style="margin-bottom: 10px;">
 			</form>
