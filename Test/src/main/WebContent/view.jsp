@@ -93,7 +93,9 @@
 						    <tr>
 						          <td style="text-align: center;"><%= answer.getContents() %></td>
 						        <td style="text-align: right;"><%= answer.getComment_ID() %>
-						            <a href="answerUpdate.jsp?" class="btn">수정</a>
+						           <a href="answerUpdate.jsp?comment_ID=<%= answer.getComment_ID() %>&contents=<%= bbs.getContents() %>
+						           &board_id=<%= bbs.getBoard_ID() %>" class="btn">수정</a>
+
 						           <a onclick="return confirm('정말로 삭제하시겠습니까?')" href="answerDelete.jsp?comment_ID=<%= answer.getComment_ID() %>
 						           &board_id=<%= bbs.getBoard_ID() %>" class="btn">삭제</a>
 						           
