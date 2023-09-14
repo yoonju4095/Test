@@ -1,10 +1,13 @@
 package bbs;
 
 import java.awt.Window.Type;
+import java.io.File;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
@@ -68,23 +71,37 @@ public class BbsDAO {
 	
 
 	public int write(String comment_ID, String title, String contents, String fileName) {
-	    String SQL = "INSERT INTO CS_Ques (Comment_ID, Title, Contents, File_Name, Ins_Date_Time) VALUES (?, ?, ?, ?, GETDATE())";
+	    String SQL = "INSERT INTO CS_Ques (Comment_ID, Title, Contents, FileData, Ins_Date_Time) VALUES (?, ?, ?, ?, GETDATE())";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);
 	        pstmt.setString(1, comment_ID);
 	        pstmt.setString(2, title);
 	        pstmt.setString(3, contents);
-	        
-	        // 파일 이름을 바이트 배열로 변환하여 저장
-	        byte[] fileNameBytes = fileName.getBytes("UTF-8");
-	        pstmt.setBytes(4, fileNameBytes);
 
-	        return pstmt.executeUpdate(); 
+	        // 파일 내용을 읽고 바이트 배열로 변환
+	        File file = new File(fileName);  // fileName은 업로드된 파일의 경로를 가정한 것입니다.
+	        byte[] fileContent = Files.readAllBytes(file.toPath());
+	        pstmt.setBytes(4, fileContent);
+
+	        int result = pstmt.executeUpdate();
+
+	        return result; // 삽입이 성공하면 1을 반환, 실패하면 0을 반환
 	    } catch(Exception e) {
 	        e.printStackTrace();
+	    } finally {
+	        // 여기에서 Connection을 닫는 코드를 추가하는 것이 좋습니다.
+	        try {
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 	    }
 	    return -1; // 데이터베이스 오류
 	}
+
+
 
 
 

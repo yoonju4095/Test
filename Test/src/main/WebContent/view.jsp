@@ -100,25 +100,23 @@
 						           &board_id=<%= bbs.getBoard_ID() %>" class="btn">삭제</a>
 						           
 						        </td>
-						    </tr>
+						   
 						<%
 							}
 						%>
 					
-					</tbody>
-		
-					<tbody>
-						<tr>
-						    <td>
-						        <input type="hidden" name="board_id" value="<%= bbs.getBoard_ID() %>">
-						        <input type="text" class="form-control" placeholder="아이디를 입력하세요." name="comment_ID" maxlength="50" style="margin-bottom: 10px;">
-						        <input type="text" class="form-control" placeholder="댓글을 입력하세요." name="contents" maxlength="100" style="height: 50px;">
-						    </td>	
-						</tr>
-					</tbody>
-							
+					 		</tr> 
+						    
+						    <tr>						    
+						         <td colspan="2">
+						         	<input type="hidden" name="board_id" value="<%= bbs.getBoard_ID() %>">
+						        	<input type="text" class="form-control" placeholder="아이디를 입력하세요." name="comment_ID" maxlength="50" style="margin-bottom: 10px;">
+						        	<input type="text" class="form-control" placeholder="댓글을 입력하세요." name="contents" maxlength="100" style="height: 50px;">
+						        </td>
+							</tr>
 					
-
+					</tbody>
+					
 				</table>
 				<input type="submit" class="btn" value="댓글입력" style="margin-bottom: 10px;">
 			</form>
